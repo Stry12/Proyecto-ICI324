@@ -1,0 +1,43 @@
+.boton-nav {
+    border: none;
+    font-size: 2.3rem;
+    background-color: gray;
+    color: black;
+}
+
+.boton-nav:hover {
+    background-color: white;
+}
+
+.boton-nav:active {
+    background-color: gray;
+    color: white;
+}
+
+
+
+.content-buttons {
+    display: flex;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+
+}
+
+.buttons-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.button-nav {
+    margin: 0 10rem;
+    background-color: aqua;
+
+}
+
+.boton-nav:last-child {
+    margin-right: 0px;
+}
