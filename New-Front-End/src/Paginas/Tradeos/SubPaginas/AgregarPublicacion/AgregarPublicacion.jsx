@@ -17,22 +17,46 @@ const apiUrl = 'http://localhost:4000';
 
 const AgregarPublicacion = () => {
   // Buscador
-  const buscados = [];
+  const [buscados, setBuscados] = useState(new Map());
+  const [librosBuscadosList, setLibrosBuscadosList] = useState([]);
 
   const [top100Films, setBooks] = useState([]);
 
+  const handleOptionSelected = (event, value) => {
+    if (value) {
+      const nuevoMapa = new Map(buscados); // Crear una nueva instancia del Map para garantizar la inmutabilidad
+      nuevoMapa.set(value.isbn, value.title);
+      setBuscados(nuevoMapa);
 
+      // Actualizar la lista de libros buscados
+      const nuevosLibrosBuscados = Array.from(nuevoMapa.entries()).map(([clave, valor]) => ({ isbn: clave, title: valor }));
+      setLibrosBuscadosList(nuevosLibrosBuscados);
+    }
+  };
+
+  const handleOptionDelete = (ISBN) => {
+
+      console.log(ISBN);
+      buscados.delete(ISBN)
+      const nuevoMapa = new Map(buscados); // Crear una nueva instancia del Map para garantizar la inmutabilidad
+      setBuscados(nuevoMapa);
+
+      // Actualizar la lista de libros buscados
+      const nuevosLibrosBuscados = Array.from(nuevoMapa.entries()).map(([clave, valor]) => ({ isbn: clave, title: valor }));
+      setLibrosBuscadosList(nuevosLibrosBuscados);
+  };
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch(`${apiUrl}/libros/librosisbn`);
+        const response = await fetch(`${apiUrl}/libros/librosisbnauthor`);
         const data = await response.json();
   
         if (data && data.libros) {
           const formattedBooks = data.libros.map((libro) => ({
             title: libro.Titulo,
             isbn: libro.ISBN,
+            autor: libro.Autor
           }));
   
           setBooks(formattedBooks);
@@ -162,11 +186,29 @@ const AgregarPublicacion = () => {
                 id="grouped-demo"
                 options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(option) => option.firstLetter}
-                getOptionLabel={(option) => option.title}
-                sx={{
-                mb: 2 }}
-                renderInput={(params) => <TextField {...params} label="Libros Buscados" />}
+                getOptionLabel={(option) => option.title + " - " + option.autor}
+                value={buscados}
+                onChange={handleOptionSelected}
+                sx={{ mb: 2 }}
+                renderInput={(params) => <TextField key={params.isbn} {...params} label="Libros Buscados" />}
               />
+
+              <Grid container spacing={1}>
+                {librosBuscadosList.map((libro, index) => (
+                  <Grid item xs={12} sm={6} md={4} lg={3} xl={2}                    key={index} 
+>
+                    <Button 
+                    sx={{
+                      fontSize: '10px',
+                    }} 
+                    onClick={() => handleOptionDelete(libro.isbn)}
+                    >
+                      {libro.title} 
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
+
             </Grid>
           </Grid>
 
