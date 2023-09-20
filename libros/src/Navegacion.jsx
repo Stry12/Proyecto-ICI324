@@ -6,10 +6,10 @@ export function Navegacion () {
         <div>
             <nav className='content-buttons'>
                 <ul className='buttons-list'>
-                    <li className='button-nav'>Inicio</li>
-                    <li className='button-nav'>Tradeos</li>
-                    <li className='button-nav'>Libros</li>
-                    <li className='button-nav'>Mis publicaciones</li>
+                    <li className='button-nav'><a className='button-nav-text'>Inicio</a></li>
+                    <li className='button-nav'><a className='button-nav-text'>Tradeos</a></li>
+                    <li className='button-nav'><a className='button-nav-text'>Libros</a></li>
+                    <li className='button-nav'><a className='button-nav-text'>Mis publicaciones</a></li>
                 </ul>         
             </nav>
         </div>

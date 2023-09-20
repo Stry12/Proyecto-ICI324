@@ -1,17 +1,26 @@
-.boton-nav {
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+
+
+/* CSS Navegacion */
+.button-nav {
     border: none;
     font-size: 2.3rem;
     background-color: gray;
     color: black;
+    justify-content: center;
 }
 
-.boton-nav:hover {
+.button-nav {
+    margin: 0rem 10rem;
+}
+
+.button-nav:hover {
     background-color: white;
-}
-
-.boton-nav:active {
-    background-color: gray;
-    color: white;
 }
 
 
@@ -20,24 +29,23 @@
     display: flex;
     background-color: gray;
     display: flex;
-    justify-content: center;
-
+    height: 5rem;
+    justify-content: space-between;
 }
 
 .buttons-list{
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0rem 0rem;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.button-nav {
-    margin: 0 10rem;
-    background-color: aqua;
-
+.button-nav-text {
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
-.boton-nav:last-child {
-    margin-right: 0px;
-}
+/*Css Navegacion Fin*/
