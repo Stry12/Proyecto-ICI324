@@ -1,12 +1,13 @@
 //import { Button } from "@mui/material"; //Más practico
-import { Container } from "@mui/material";
-import Button from "@mui/material/Button"; //Más rapido dicen
-import Navegacion from "./Comunes/Navegacion";
+import './App.css'
+import LoginR from './Comunes/LoginR';
+import SimpleBottomNavigation from './Comunes/SimpleBottomNavigation';
 
 export function App(){
     return (
-        <Container>
-           <Navegacion></Navegacion>
-        </Container>
+        <section className='contenedor'>
+            <LoginR></LoginR>
+            <SimpleBottomNavigation></SimpleBottomNavigation>
+        </section>
     )
 }
