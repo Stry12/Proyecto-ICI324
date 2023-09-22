@@ -1,4 +1,4 @@
-import "C:/Users/Salvador/Documents/GitHub/Proyecto-ICI324/libros/src/App.css"
+import "C:/Users/Salvador/OneDrive - alumnos.uv.cl/Escritorio/sexo/kellun_proyect/Proyecto-ICI324/libros/src/App.css"
 import {Avatar} from "@mui/material";
 
 export default function LoginR() {
