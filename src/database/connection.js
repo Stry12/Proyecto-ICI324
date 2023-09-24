@@ -4,7 +4,7 @@ const connectionConfig = {
     host: 'localhost' ,
     user:'root',
     password: '',
-    database: 'ss'
+    database: 'marketbook'
 };
 
 
@@ -29,5 +29,5 @@ connection.query(`CREATE DATABASE IF NOT EXISTS ${connectionConfig.database}`, (
     connection.end();
 });
 
-export default connectionConfig;
+export default connection;
 

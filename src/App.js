@@ -2,10 +2,9 @@ import cors from 'cors';
 import path from 'path';
 import morgan from 'morgan';
 import express from 'express';
-
 import { NODE_ENV, RUN_PORT, STATIC_PATH } from './const/conts.js';
 
-const App = express(); //Crea una instancia de la app
+const App = express();
 
 const corsOptions = {
     credentials: true,
@@ -14,26 +13,23 @@ const corsOptions = {
     origin: '*'
 }
 
-//Archivo de configuracion bd
-
+// Archivo de configuración bd
 import './database/connection.js'
 
-App.set('env',NODE_ENV)
-App.set('port',RUN_PORT)
+App.set('env', NODE_ENV)
+App.set('port', RUN_PORT)
 
 App.use(morgan('dev'));
 App.use(cors(corsOptions));
-App.use(express.json({limit: '500MB'}));
-App.use(express.urlencoded({extended:true}))
+App.use(express.json({ limit: '500MB' }));
+App.use(express.urlencoded({ extended: true }));
 
+// Static folder
+App.use(express.static(path.join(path.resolve(), STATIC_PATH)));
 
-//Stati folder
-
-App.use(express.static(path.join(path.resolve(),STATIC_PATH)))
-
-//ENDPOINTS
+// ENDPOINTS
 import routerUser from './routes/user.js';
 
-App.use("/user",routerUser)
+App.use("/user", routerUser);
 
 export default App;
