@@ -1,0 +1,36 @@
+.body{
+  padding: 0;
+  margin: 0;
+
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 2px;
+}
+
+.login {
+  display: flex;
+  text-align: center;
+  gap: 1rem;
+  align-items: center;
+  height: 4rem;
+  grid-column: 11/13;
+  grid-row: 1/2;
+  justify-content: flex-end; /* Alinea el contenido a la derecha */
+}
+
+.login-contenido {
+  margin-right: 10px; /* Agrega 10 píxeles de margen a la derecha */
+}
+
+.login-opciones{
+  display: flex;
+  align-items: center;
+}
+
+.contenedor-nav {
+  grid-row: 2/3;
+  grid-column: 1/13;
+}
