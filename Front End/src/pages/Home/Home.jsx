@@ -4,8 +4,7 @@ import LoginR from "../../components/LoginR";
 
 function Home() {
   return ( <>
-    <LoginR></LoginR>
-    <SimpleBottomNavigation></SimpleBottomNavigation>
+ 
   </>
       
   );

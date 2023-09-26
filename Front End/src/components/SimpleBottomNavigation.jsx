@@ -4,6 +4,8 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import "../App.css"
 import {styled } from "@mui/material/styles";
+import { Link } from 'react-router-dom';
+
 
 export default function SimpleBottomNavigation() {
 const [value, setValue] = React.useState(0);
@@ -35,10 +37,14 @@ const StyledBottomNavigationAction = styled(BottomNavigationAction)(() => ({
                 setValue(newValue);
                 }}
             >
-                <StyledBottomNavigationAction label="Inicio"/>
-                <StyledBottomNavigationAction label="Treadeos" />
-                <StyledBottomNavigationAction label="Libros"/>
-                <StyledBottomNavigationAction label="Mis Publicaciones"/>
+                <StyledBottomNavigationAction component={Link}
+        to="/" label="Inicio"/>
+                <StyledBottomNavigationAction component={Link}
+        to="/*" label="Tradeos" />
+                <StyledBottomNavigationAction component={Link}
+        to="/Consulta" label="Libros"/>
+                <StyledBottomNavigationAction component={Link}
+        to="/*" label="Mis Publicaciones"/>
             </StyledBottomNavigation>
         </Box>
    
