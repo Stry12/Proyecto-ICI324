@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LibrosButton from "../../components/LibrosButton";
 
 function Consulta() {
   const [data, setData] = useState([]);
@@ -14,16 +15,7 @@ function Consulta() {
 
   return (
     <>
-      <h1>Libros</h1>
-      {data && data.map((libro) => (
-        <div key={libro.ISBN}>
-          <h2>Título: {libro.Titulo}</h2>
-          <p>Autor: {libro.Autor}</p>
-          <p>Descripción: {libro.Descripción}</p>
-          <p>Categoría: {libro.Categoria}</p>
-          <img src={libro.Portada} alt={`Portada de ${libro.Titulo}`} />
-        </div>
-      ))}
+      <LibrosButton></LibrosButton>
     </>
   );
 }
