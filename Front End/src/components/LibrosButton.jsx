@@ -24,9 +24,15 @@ const images = [
 
 const StyledBox = styled(Box)(({ theme }) => ({
   display: 'flex',
-  flexWrap: 'wrap',
+  flexDirection: 'row',
   minWidth: 300,
   width: '100%',
+  gap: 2,
+  [theme.breakpoints.down('sm')]: {
+    width: '100% !important',
+    flexDirection: 'column',
+  },
+
 }));
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
