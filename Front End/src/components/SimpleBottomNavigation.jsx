@@ -45,6 +45,8 @@ const StyledBottomNavigationAction = styled(BottomNavigationAction)(() => ({
         to="/Consulta" label="Libros"/>
                 <StyledBottomNavigationAction component={Link}
         to="/*" label="Mis Publicaciones"/>
+                <StyledBottomNavigationAction component={Link}
+        to="/IngresoLibro" label="Formulario"/>
             </StyledBottomNavigation>
         </Box>
    
