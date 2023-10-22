@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextField, Typography, Container, Paper } from '@mui/material';
+import { Button, TextField, Typography, Container, Paper, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 function Formulario() {
   const [bookInfo, setBookInfo] = useState({
@@ -8,6 +8,7 @@ function Formulario() {
     author: '',
     synopsis: '',
     coverImage: null,
+    category: '', // Agregamos la categoría
   });
 
   const handleChange = (event) => {
@@ -22,14 +23,36 @@ function Formulario() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aquí puedes enviar los datos del libro al servidor o realizar alguna acción con ellos.
-    if(!bookInfo.isbn || !bookInfo.title || !bookInfo.author || !bookInfo.synopsis || !bookInfo.coverImage) {
-        alert("Por favor, completa todos los campos");
-        return;
-    }
-    
-    console.log(bookInfo);
 
+    if (!bookInfo.isbn || !bookInfo.title || !bookInfo.author || !bookInfo.synopsis || !bookInfo.coverImage || !bookInfo.category) {
+      alert("Por favor, completa todos los campos");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('isbn', bookInfo.isbn);
+    formData.append('title', bookInfo.title);
+    formData.append('author', bookInfo.author);
+    formData.append('synopsis', bookInfo.synopsis);
+    formData.append('category', bookInfo.category);
+    formData.append('coverImage', bookInfo.coverImage);
+
+    fetch('http://localhost:4000/libros/subir', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.text())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    setBookInfo({
+      isbn: '',
+      title: '',
+      author: '',
+      synopsis: '',
+      coverImage: null,
+      category: '', // Restablecemos la categoría
+    });
   };
 
   return (
@@ -72,17 +95,21 @@ function Formulario() {
             multiline
             margin="normal"
           />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            fullWidth
-          >
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Categoría</InputLabel>
+            <Select
+              name="category"
+              value={bookInfo.category}
+              onChange={handleChange}
+            >
+              <MenuItem value="Aventura">Aventura</MenuItem>
+              <MenuItem value="Romance">Romance</MenuItem>
+              <MenuItem value="Misterio">Misterio</MenuItem>
+              <MenuItem value="Ciencia Ficción">Ciencia Ficción</MenuItem>
+            </Select>
+          </FormControl>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+          <Button variant="contained" color="primary" type="submit" fullWidth>
             Enviar
           </Button>
         </form>
