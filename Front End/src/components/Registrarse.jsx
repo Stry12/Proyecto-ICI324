@@ -1,43 +1,91 @@
-import { Link } from "react-router-dom"
+import React, { useState } from 'react';
+import { Button, Container, Paper, TextField, Typography, FormControl, FormLabel, Radio, RadioGroup, FormControlLabel } from '@mui/material';
 
-export default function Registrarse() {
-    const handleImageUpload = (e) =>{
-        const selectedFile = e.target.files[0]
-        console.log("Imagen sleccionada:".selectedFile);
-    };
+function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    gender: 'male',
+  });
 
-    return(
-        <div className="Registro">
-            <h1>Crea tu cuenta</h1>
-                <form>
-                    <div>
-                    <label htmlFor="username">Nombre de usuario:</label>
-                    <input type="text" id="username" name="username" />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Contraseña: </label>
-                        <input type="password" id="password" name="password" />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Correo: </label>
-                        <input type="text" id="correo" name="correo" />
-                    </div>
-                    <div>
-                        <label htmlFor="imagen">Imagen de perfil:</label>
-                        <input
-                            type="file"
-                            id="imagen"
-                            name="imagen"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                        />
-                    </div>
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Aquí puedes realizar acciones como enviar los datos del formulario al servidor.
+    console.log(formData);
+  };
 
-                </form>
-        </div>
-    )
-
-
-
+  return (
+    <Container maxWidth="sm">
+      <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+        <Typography variant="h5" component="h2">
+          Registro
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="Nombre"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Correo"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Contraseña"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Confirmar Contraseña"
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Sexo</FormLabel>
+            <RadioGroup
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              row
+            >
+              <FormControlLabel value="male" control={<Radio />} label="Hombre" />
+              <FormControlLabel value="female" control={<Radio />} label="Mujer" />
+            </RadioGroup>
+          </FormControl>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            fullWidth
+          >
+            Registrarse
+          </Button>
+        </form>
+      </Paper>
+    </Container>
+  );
 }
+
+export default RegistrationForm;
