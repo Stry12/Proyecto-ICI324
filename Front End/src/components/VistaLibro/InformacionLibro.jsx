@@ -1,6 +1,15 @@
-import React from 'react';
-import { Card, CardContent, CardMedia, Typography, useTheme } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import { styled } from '@mui/system';
+import { useParams } from 'react-router-dom';
+
+const apiUrl = 'http://localhost:4000';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   display: 'flex',
@@ -16,7 +25,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 const StyledMedia = styled(CardMedia)(({ theme }) => ({
   width: 200,
-    height: 300,
+  height: 300,
   objectFit: 'cover',
   borderRadius: theme.breakpoints.down('sm') ? '10px 10px 0 0' : '10px 0 0 10px',
 }));
@@ -48,21 +57,43 @@ const StyledSinopsis = styled(Typography)({
   marginTop: '16px',
 });
 
-const InformacionLibro = ({ book }) => {
-  const theme = useTheme();
+const InformacionLibro = () => {
+    const { id } = useParams();
+    const [book, setBook] = useState({});
+    const theme = useTheme();
+  
+    useEffect(() => {
+      // Construye la URL para la solicitud utilizando el valor de `id`
+      const apiUrlBook = `${apiUrl}/libros/getlibrosID/${id}`;
+      
+      // Realiza la solicitud HTTP para obtener detalles del libro
+      fetch(apiUrlBook)
+        .then((response) => {
+          if (!response.ok) {
+            throw Error('Error en la solicitud');
+          }
+          return response.json();
+        })
+        .then((jsonData) => {
+          // Al recibir los detalles del libro, actualiza el estado del componente
+          setBook(jsonData.libros[0] || {}); // Usar el primer elemento o un objeto vacío si no hay datos
+        })
+        .catch((error) => console.error('Error al obtener datos de la API:', error));
+    }, [id]);
+  
+    return (
+      <StyledCard>
+        <StyledMedia component="img" image={`${apiUrl}/imagenes/portadas/${book.nombre_imagen}`} alt="Portada del libro" />
+        <StyledCardContent>
+          <StyledTitle>Título: {book.Titulo}</StyledTitle>
+          <StyledAuthor>Autor: {book.Autor}</StyledAuthor>
+          <StyledISBN>ISBN: {book.ISBN}</StyledISBN>
+          <StyledSinopsis>Sinopsis: {book.Descripción}</StyledSinopsis>
+        </StyledCardContent>
+      </StyledCard>
+    );
+  };
+  
 
-  return (
-    <StyledCard>
-      <StyledMedia component="img" image={book.portada} alt="Portada del libro" />
-      <StyledCardContent>
-        <StyledTitle>Título: {book.titulo}</StyledTitle>
-        <StyledAuthor>Autor: {book.autor}</StyledAuthor>
-        <StyledISBN>ISBN: {book.isbn}</StyledISBN>
-        <StyledSinopsis>Sinopsis: {book.sinopsis}</StyledSinopsis>
-      </StyledCardContent>
-    </StyledCard>
-  );
-};
 
 export default InformacionLibro;
-

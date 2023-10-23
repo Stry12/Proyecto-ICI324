@@ -5,12 +5,12 @@ import {
   CardMedia,
   Grid,
   Typography,
-  Button, // Importa Button de Material-UI
+  Button,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { styled } from '@mui/system';
-import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
+import { Link } from 'react-router-dom';
 
 const apiUrl = 'http://localhost:4000';
 
@@ -37,7 +37,6 @@ const Consulta = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('xs'));
 
   useEffect(() => {
-    // Realiza la solicitud HTTP a la API y actualiza el estado "data" con los resultados.
     fetch(`${apiUrl}/libros/getlibros`)
       .then((response) => {
         if (!response.ok) {
@@ -49,6 +48,7 @@ const Consulta = () => {
       .catch((error) => console.error('Error al obtener datos de la API:', error));
   }, []);
 
+
   const columns = isSmallScreen ? 1 : 3;
 
   return (
@@ -59,12 +59,12 @@ const Consulta = () => {
         </Button>
       </Link>
       <Grid container spacing={1}>
-        {data.map((book, index) => (
+        {data && data.map((book, index) => (
           <Grid item key={index} xs={3} sm={6} md={4} lg={5} xl={2}>
             <StyledCard>
-              <StyledMedia
-                image={`${apiUrl}/imagenes/portadas/${book.nombre_imagen}`}
-              />
+                <Link to={`/Informacion/${book.ISBN}`} style={{ textDecoration: 'none' }}>
+                  <StyledMedia image={`${apiUrl}/imagenes/portadas/${book.nombre_imagen}`} />
+                </Link> 
             </StyledCard>
           </Grid>
         ))}

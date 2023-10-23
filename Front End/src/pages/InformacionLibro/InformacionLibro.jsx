@@ -11,7 +11,7 @@ const libro = {
   sinopsis: 'Esta es la sinopsis del libro...',
 };
 
-function IngresoLibros() {
+function InformacionLibro() {
   return ( <>
     <Grid container spacing={2}>
       <Grid item xs={12} sm={12} md={12} xl={12}>
@@ -22,4 +22,4 @@ function IngresoLibros() {
   );
 }
 
-export default IngresoLibros;
+export default InformacionLibro;
