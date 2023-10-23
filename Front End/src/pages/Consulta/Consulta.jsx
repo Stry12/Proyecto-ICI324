@@ -60,7 +60,7 @@ const Consulta = () => {
       </Link>
       <Grid container spacing={1}>
         {data && data.map((book, index) => (
-          <Grid item key={index} xs={3} sm={6} md={4} lg={5} xl={2}>
+          <Grid item key={index} xs={6} sm={5} md={4} lg={3} xl={2}>
             <StyledCard>
                 <Link to={`/Informacion/${book.ISBN}`} style={{ textDecoration: 'none' }}>
                   <StyledMedia image={`${apiUrl}/imagenes/portadas/${book.nombre_imagen}`} />
