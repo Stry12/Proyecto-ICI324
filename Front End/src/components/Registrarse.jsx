@@ -7,7 +7,7 @@ function RegistrationForm() {
     email: '',
     password: '',
     confirmPassword: '',
-    gender: 'male',
+    gender: '',
   });
 
   const handleChange = (event) => {
@@ -17,8 +17,29 @@ function RegistrationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aquí puedes realizar acciones como enviar los datos del formulario al servidor.
-    console.log(formData);
+
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      alert("Por favor, completa todos los campos");
+      return;
+    }
+
+    const formDataUpload = new FormData();
+    formDataUpload.append('name', formData.name);
+    formDataUpload.append('email', formData.email);
+    formDataUpload.append('password', formData.password);
+
+    fetch('http://localhost:4000/libros/subir', {
+      method: 'POST',
+      body: formDataUpload,
+    })
+      .then((res) => res.text())
+      .then((res) => {
+        console.log(res);
+        // Puedes realizar alguna acción adicional aquí después de enviar el formulario.
+      })
+      .catch((err) => console.error(err));
+
+    // Resto del código
   };
 
   return (

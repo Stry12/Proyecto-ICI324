@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 import Home  from '../pages/Home/Home.jsx';
 import Error from '../pages/Error/404.jsx';
-import Consulta from '../pages/Consulta/consulta.jsx';
+import Consulta from '../pages/Consulta/Consulta.jsx';
 import Logearse from '../components/Logearse.jsx';
 import Registrarse from '../components/Registrarse.jsx';
 
