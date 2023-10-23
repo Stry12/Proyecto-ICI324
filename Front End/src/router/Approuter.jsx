@@ -3,6 +3,7 @@ import Home  from '../pages/Home/Home.jsx';
 import Error from "../pages/Error/404.jsx";
 import Consulta from "../pages/Consulta/Consulta.jsx";
 import IngresoLibros from "../pages/IngresoLibro/IngresoLibros.jsx";
+import AgregarLibro from "../pages/AgregarLibro/AgregarLibro.jsx";
 
 export const AppRouter = () => {
   return (
@@ -10,6 +11,7 @@ export const AppRouter = () => {
         <Route path="/" element={ <Home></Home> } />
         <Route path="/Consulta" element={<Consulta></Consulta>} />
         <Route path="/IngresoLibro" element={<IngresoLibros></IngresoLibros>} />
+        <Route path="/AgregarLibro" element={<AgregarLibro></AgregarLibro>} />
         <Route path="/*" element={<Error></Error>} />
     </Routes>
   );
