@@ -5,7 +5,8 @@ import Consulta from "../pages/Consulta/Consulta.jsx";
 import IngresoLibros from "../pages/InformacionLibro/InformacionLibro.jsx";
 import AgregarLibro from "../pages/AgregarLibro/AgregarLibro.jsx";
 import InformacionLibro from '../pages/InformacionLibro/InformacionLibro.jsx';
-
+import Registrarse from '../components/Registrarse.jsx';
+import Logearse from '../components/Logearse.jsx'
 export const AppRouter = () => {
   return (
     <Routes>
@@ -14,6 +15,8 @@ export const AppRouter = () => {
         <Route path="/IngresoLibro" element={<IngresoLibros></IngresoLibros>} />
         <Route path="/AgregarLibro" element={<AgregarLibro></AgregarLibro>} />
         <Route path="/Informacion/:id" element={<InformacionLibro></InformacionLibro>} />
+        <Route path="/Logearse" element={<Logearse></Logearse>} />
+        <Route path='/Registrarse' element={<Registrarse></Registrarse>} />
         <Route path="/*" element={<Error></Error>} />
     </Routes>
   );
