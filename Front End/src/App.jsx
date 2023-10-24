@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import './App.css'
 import { AppRouter } from './router/Approuter'
-import BottonLogin from './components/BottonLogin'
-
-import SimpleBottomNavigation from './components/SimpleBottomNavigation'
-import Logearse from './components/Logearse'
+import NavBar from './components/NavBar'
 
 function App() {
 
   return (
      
     <React.Fragment>
-      <BottonLogin></BottonLogin>
-      <SimpleBottomNavigation></SimpleBottomNavigation>
+      <NavBar></NavBar>
       <AppRouter></AppRouter>
     </React.Fragment>
   )
