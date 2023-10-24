@@ -24,6 +24,7 @@ const Burguer = styled.div`
   height: 30px;
   margin: 10px 10px;
   position: relative;
+  z-index: 30;
   cursor: pointer;
   display: inline-block;
 }
