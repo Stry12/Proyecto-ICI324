@@ -58,6 +58,7 @@ const NavContainer = styled.nav`
     margin-right: auto;
     text-align: center;
     transition: all .5s ease;
+    z-index: 30;
     a{
       color: white;
       font-size: 2rem;
@@ -104,7 +105,7 @@ const BgDiv = styled.div`
   left: -1000px;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 20;
   transition: all .6s ease ;
   
   &.active{
