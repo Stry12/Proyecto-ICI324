@@ -3,10 +3,10 @@ import SimpleBottomNavigation from "../../components/SimpleBottomNavigation";
 
 
 function Home() {
-  return ( <>
+  return ( 
+  <>
  
   </>
-      
   );
 }
 
