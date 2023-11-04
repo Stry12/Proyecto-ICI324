@@ -1,0 +1,42 @@
+/* Estilo para la capa gris */
+.cardMediaOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Color gris con 50% de opacidad */
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.3s; /* Agrega una transición para suavizar el cambio de opacidad */
+  }
+  
+  /* Estilo para el contenedor de la imagen en hover */
+  .cardMediaContainer:hover .cardMediaOverlay {
+    cursor: help; /* Cambiar el cursor a ayuda */
+    opacity: 1; /* Mostrar la capa gris al hacer hover en el contenedor */
+  }
+  
+  /* Estilo para agrandar la imagen en hover */
+  .cardMediaContainer:hover .cardMediaImage {
+    transform: scale(1.05); /* Agrandar la imagen al 110% al hacer hover */
+  }
+  
+/* Informacion Libro Stylos */
+
+.cardInformacionLibro {
+    position: relative;
+}
+
+.cardInformacionLibro .cardInformacionLibroTitulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.cardInformacionLibro .cardInformacionLibroAutor {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
