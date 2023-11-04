@@ -7,6 +7,8 @@ import AgregarLibro from "../pages/AgregarLibro/AgregarLibro.jsx";
 import InformacionLibro from '../pages/InformacionLibro/InformacionLibro.jsx';
 import Registrarse from '../components/Registrarse.jsx';
 import Logearse from '../components/Logearse.jsx'
+
+
 export const AppRouter = () => {
   return (
     <Routes>
