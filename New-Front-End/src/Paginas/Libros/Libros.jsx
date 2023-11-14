@@ -25,6 +25,17 @@ const Libros = () => {
       .catch((error) => console.error('Error al obtener datos de la API:', error));
   }, []);
 
+  console.log(    fetch(`${apiUrl}/libros/getlibros`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Error en la solicitud');
+    }
+    return response.json();
+  })
+  .then((jsonData) => setData(jsonData.libros))
+  .catch((error) => console.error('Error al obtener datos de la API:', error))
+);
+
   return (
     <>
       <NavBar />
