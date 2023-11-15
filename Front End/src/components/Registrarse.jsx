@@ -15,9 +15,9 @@ function RegistrationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+      console.log("owo")
     // Enviar datos al backend
-    fetch('http://localhost:3000/setuser', {
+    fetch('http://localhost:3000/register/setuser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,11 @@ function RegistrationForm() {
         console.log(data.message);
         // Puedes realizar alguna acción adicional aquí después de enviar el formulario.
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        console.log('Response:', err.response); // Agrega esta línea para imprimir la respuesta
+      });
+      
   };
 
   return (
