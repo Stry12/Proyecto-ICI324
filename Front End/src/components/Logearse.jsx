@@ -27,7 +27,7 @@ function LoginForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
+          NombreDeUsuario: formData.NombreDeUsuario,
           password: formData.password,
         }),
       });
@@ -48,6 +48,8 @@ function LoginForm() {
       setError('Error de red');
     }
   };
+
+  console.log(formData);
 
   return (
     <Container maxWidth="sm">

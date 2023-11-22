@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Container, Paper, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
@@ -39,6 +40,8 @@ function RegistrationForm() {
       
   };
 
+  console.log(formData);
+
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
@@ -71,14 +74,14 @@ function RegistrationForm() {
             fullWidth
             margin="normal"
           />
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            fullWidth
-          >
-            Registrarse
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
+            >
+              Registrarse
+            </Button>
         </form>
       </Paper>
     </Container>
