@@ -5,6 +5,7 @@ import InformacionLibros from '../Paginas/Libros/SubPaginas/InformacionLibros/In
 import AgregarLibro from '../Paginas/Libros/SubPaginas/AgregarLibro/AgregarLibros.jsx';
 import Tradeos from '../Paginas/Tradeos/Tradeos.jsx'
 import AgregarPublicacion from '../Paginas/Tradeos/SubPaginas/AgregarPublicacion/AgregarPublicacion.jsx';
+import UserProfileViewer from '../Paginas/Perfil/UserProfileViewer.jsx';
 
 
 export const AppRouter = () => {
@@ -17,7 +18,7 @@ export const AppRouter = () => {
         <Route path="/Tradeos" element={ <Tradeos></Tradeos> } />
         <Route path='/Tradeos/agregar' element={ <AgregarPublicacion></AgregarPublicacion> } />
         <Route path="/mPublicaciones" element={ <h1>mPublicaciones</h1> } />
-        <Route path="/Perfil" element={ <h1>Perfil</h1> } />
+        <Route path="/perfil" element={ <UserProfileViewer/> } />
     </Routes>
   );
 }
