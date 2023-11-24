@@ -111,7 +111,6 @@ const AgregarPublicacion = () => {
 
   return (
     <>
-      <NavBar></NavBar>
       <Paper
         elevation={3}
         sx={{

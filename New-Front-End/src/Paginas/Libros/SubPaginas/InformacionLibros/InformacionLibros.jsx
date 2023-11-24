@@ -10,7 +10,6 @@ const InformacionLibros = () => {
     const {id} = useParams();
   return (
     <>
-        <NavBar />
         <Card sx= {{
             maxWidth: 260,
         }}>

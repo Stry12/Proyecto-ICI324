@@ -38,7 +38,6 @@ const Libros = () => {
 
   return (
     <>
-      <NavBar />
       <Link to="/Libros/agregar" style={{ textDecoration: 'none' }}>
         <Button variant="contained" color="primary" style={{ margin: '10px' }}>
           Agregar

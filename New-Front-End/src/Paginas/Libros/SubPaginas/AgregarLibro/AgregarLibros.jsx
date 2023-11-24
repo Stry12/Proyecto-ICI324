@@ -62,7 +62,6 @@ const AgregarLibro = () => {
 
   return (
     <>
-        <NavBar />
         <Container maxWidth="sm">
         <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
             <Typography variant="h5" component="h2">

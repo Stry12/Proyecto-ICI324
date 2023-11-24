@@ -5,12 +5,13 @@ import InformacionLibros from '../Paginas/Libros/SubPaginas/InformacionLibros/In
 import AgregarLibro from '../Paginas/Libros/SubPaginas/AgregarLibro/AgregarLibros.jsx';
 import Tradeos from '../Paginas/Tradeos/Tradeos.jsx'
 import AgregarPublicacion from '../Paginas/Tradeos/SubPaginas/AgregarPublicacion/AgregarPublicacion.jsx';
+import Inicio from '../Paginas/Inicio/Inicio.jsx';
 
 
 export const AppRouter = () => {
   return (
     <Routes>
-        <Route path="/Home" element={ <NavBar></NavBar> } />
+        <Route path="/Home" element={ <Inicio></Inicio> } />
         <Route path="/Libros" element={ <Libros></Libros> } />
         <Route path="/Libros/informacion" element={ <InformacionLibros></InformacionLibros> } />
         <Route path="/Libros/agregar" element={ <AgregarLibro></AgregarLibro> } />
