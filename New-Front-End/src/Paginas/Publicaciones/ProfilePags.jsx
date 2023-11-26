@@ -19,7 +19,6 @@ const ProfilePage = () => {
 
   return (
     <div>
-        <NavBar/>
         <Card>
             <CardContent>    
                 <Button variant="contained" startIcon={<AddIcon/>}>

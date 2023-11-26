@@ -46,8 +46,6 @@ export default function CambiarContraseña() {
                 <Button onClick={handleClose}>Confirmar</Button>
                 <ContraseñaNueva/>
             </React.Fragment>
-            
-          
         </DialogActions>
       </Dialog>
     </React.Fragment>

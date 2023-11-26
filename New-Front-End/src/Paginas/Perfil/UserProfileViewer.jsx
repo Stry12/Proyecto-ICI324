@@ -24,7 +24,6 @@ const user = {
 const UserProfileViewer = () => {
   return (
     <>
-        <NavBar/>
         <Card>
             <CardContent>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
