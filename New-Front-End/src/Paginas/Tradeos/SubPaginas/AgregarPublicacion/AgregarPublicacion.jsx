@@ -15,8 +15,10 @@ import {
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import NavBar from '../../../../Componentes/Navbar.jsx';
 import '../../../../App.css';
+import Cookies from 'universal-cookie';
 
 const apiUrl = 'http://localhost:4000';
+const cookies = new Cookies();
 
 const AgregarPublicacion = () => {
   const navigate = useNavigate();
@@ -109,6 +111,10 @@ const AgregarPublicacion = () => {
     if (!title || !isbn || !condition || !images) {
       alert("Por favor, completa todos los campos");
       return;
+    }
+
+    if(cookies.get('idDeUsuario') == null){
+      return navigate('/Inicio');
     }
 
     const formData = new FormData();
