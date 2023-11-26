@@ -8,12 +8,15 @@ import AgregarPublicacion from '../Paginas/Tradeos/SubPaginas/AgregarPublicacion
 import UserProfileViewer from '../Paginas/Perfil/UserProfileViewer.jsx';
 import ProfilePage from '../Paginas/Publicaciones/ProfilePags.jsx';
 import Inicio from '../Paginas/Inicio/Inicio.jsx';
+import Logearse from '../Paginas/Sesion/Logearse.jsx';
+import Registrarse from '../Paginas/Sesion/Registrarse.jsx';
 
 
 export const AppRouter = () => {
   return (
     <Routes>
         <Route path="/Home" element={ <Inicio></Inicio> } />
+        <Route path="/Inicio" element={ <Registrarse></Registrarse> } />
         <Route path="/Libros" element={ <Libros></Libros> } />
         <Route path="/Libros/informacion" element={ <InformacionLibros></InformacionLibros> } />
         <Route path="/Libros/agregar" element={ <AgregarLibro></AgregarLibro> } />
