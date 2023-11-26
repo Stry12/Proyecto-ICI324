@@ -31,7 +31,7 @@ function LoginForm() {
           NombreDeUsuario: formData.NombreDeUsuario,
           password: formData.password,
         }),
-      });
+      }).then((res) => res.json()).then(console.log("hola"));
 
       if (response.ok) {
         // La autenticación fue exitosa
