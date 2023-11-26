@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Container, Paper, TextField, Typography, FormControl, FormLabel, Radio, RadioGroup, FormControlLabel } from '@mui/material';
+import { Button, Container, Paper, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    gender: '',
   });
 
   const handleChange = (event) => {
@@ -17,30 +16,31 @@ function RegistrationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      alert("Por favor, completa todos los campos");
-      return;
-    }
-
-    const formDataUpload = new FormData();
-    formDataUpload.append('name', formData.name);
-    formDataUpload.append('email', formData.email);
-    formDataUpload.append('password', formData.password);
-
-    fetch('http://localhost:4000/libros/subir', {
+    // Enviar datos al backend
+    fetch('http://localhost:3000/user/setuser', {
       method: 'POST',
-      body: formDataUpload,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      }),
     })
-      .then((res) => res.text())
-      .then((res) => {
-        console.log(res);
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message);
         // Puedes realizar alguna acción adicional aquí después de enviar el formulario.
       })
-      .catch((err) => console.error(err));
-
-    // Resto del código
+      .catch((err) => {
+        console.error(err);
+        console.log('Response:', err.response); // Agrega esta línea para imprimir la respuesta
+      });
+      
   };
+
+  console.log(formData);
 
   return (
     <Container maxWidth="sm">
@@ -74,35 +74,14 @@ function RegistrationForm() {
             fullWidth
             margin="normal"
           />
-          <TextField
-            label="Confirmar Contraseña"
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-          />
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Sexo</FormLabel>
-            <RadioGroup
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              row
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
             >
-              <FormControlLabel value="male" control={<Radio />} label="Hombre" />
-              <FormControlLabel value="female" control={<Radio />} label="Mujer" />
-            </RadioGroup>
-          </FormControl>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            fullWidth
-          >
-            Registrarse
-          </Button>
+              Registrarse
+            </Button>
         </form>
       </Paper>
     </Container>
@@ -110,3 +89,4 @@ function RegistrationForm() {
 }
 
 export default RegistrationForm;
+

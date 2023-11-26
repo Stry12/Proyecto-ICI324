@@ -12,7 +12,7 @@ import {
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 
-const apiUrl = 'http://localhost:4000';
+const apiUrl = 'http://localhost:3000';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 200,
