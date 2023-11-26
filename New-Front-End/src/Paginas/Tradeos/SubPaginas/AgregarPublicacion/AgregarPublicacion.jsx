@@ -218,6 +218,7 @@ const AgregarPublicacion = () => {
                 renderInput={(params) => <TextField key={params.isbn} {...params} label="Libros Buscados" />}
               />
 
+              
               <Grid container spacing={1}>
                 {librosBuscadosList.map((libro, index) => (
                   <Grid item xs={12} sm={6} md={4} lg={3} xl={2}                    key={index} 

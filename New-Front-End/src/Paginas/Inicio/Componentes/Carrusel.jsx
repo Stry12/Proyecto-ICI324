@@ -14,7 +14,7 @@ export default function Carrusel() {
     const [data, setData] = useState([]);
   
     useEffect(() => {
-      fetch(`${apiUrl}/libros/getlibros`)
+      fetch(`${apiUrl}/libros/get/sql`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Error en la solicitud');
@@ -24,17 +24,6 @@ export default function Carrusel() {
         .then((jsonData) => setData(jsonData.libros))
         .catch((error) => console.error('Error al obtener datos de la API:', error));
     }, []);
-  
-    console.log(    fetch(`${apiUrl}/libros/getlibros`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Error en la solicitud');
-      }
-      return response.json();
-    })
-    .then((jsonData) => setData(jsonData.libros))
-    .catch((error) => console.error('Error al obtener datos de la API:', error))
-  );
 
 
     const cardMediaStyle = {
