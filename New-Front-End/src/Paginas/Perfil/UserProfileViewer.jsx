@@ -1,12 +1,14 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import LogoutIcon from '@mui/icons-material/Logout';
-import PasswordIcon from '@mui/icons-material/Password';
+
 import { Avatar, Box, Card, CardContent, Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import NavBar from '../../Componentes/Navbar';
+import EliminarCuenta from '../../Componentes/EliminarCuenta';
+import CambiarContraseña from './CambiarContraseña';
+
 const user = {
     id: "1234",
     name: 'Juan Perez',
@@ -58,16 +60,11 @@ const UserProfileViewer = () => {
                     <Button variant="outlined" startIcon={<EditIcon/>}>
                         Editar Perfil
                     </Button>
-                    <Button variant="outlined" startIcon={<PasswordIcon/>}>
-                        Cambiar Contraseña
-                    </Button>
+                    <CambiarContraseña/>
                     <Button variant="outlined" startIcon={<LogoutIcon/>}>
                         Cerrar Sesión
                     </Button>
-                    <Button variant="outlined" startIcon={<DeleteIcon />} color="error">
-                        Eliminar Cuenta
-                    </Button>
-                    
+                    <EliminarCuenta/>
                 </Stack>
             </CardContent>
         </Card>

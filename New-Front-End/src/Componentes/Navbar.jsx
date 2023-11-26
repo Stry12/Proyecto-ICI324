@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 
 const pages = ['Inicio', 'Libros', 'Tradeos','Mis Publicaciones','Perfil'];
-const rutas = ['/Home', '/Libros', '/Tradeos','/mPublicaciones','/perfil']
+const rutas = ['/Home', '/Libros', '/Tradeos','/publicaciones','/perfil']
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
