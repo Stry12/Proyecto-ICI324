@@ -8,6 +8,9 @@ import Stack from '@mui/material/Stack';
 import NavBar from '../../Componentes/Navbar';
 import EliminarCuenta from '../../Componentes/EliminarCuenta';
 import CambiarContraseña from './CambiarContraseña';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const user = {
     id: "1234",
@@ -22,6 +25,7 @@ const user = {
   };
 
 const UserProfileViewer = () => {
+    console.log(cookies.get('idDeUsuario'));
   return (
     <>
         <Card>

@@ -17,7 +17,7 @@ function RegistrationForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Enviar datos al backend
-    fetch('http://localhost:3000/user/setuser', {
+    fetch('http://localhost:4000/user/setuser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

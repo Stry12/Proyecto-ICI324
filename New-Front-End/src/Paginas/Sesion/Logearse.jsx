@@ -4,6 +4,8 @@ import { Button, Container, Paper, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
+
 function LoginForm() {
   const [formData, setFormData] = useState({
     NombreDeUsuario: '',
@@ -22,7 +24,7 @@ function LoginForm() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/user/getuser', {
+      const response = await fetch('http://localhost:4000/user/getuser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,11 +33,14 @@ function LoginForm() {
           NombreDeUsuario: formData.NombreDeUsuario,
           password: formData.password,
         }),
-      }).then((res) => res.json()).then(console.log("hola"));
+      })
+
 
       if (response.ok) {
         // La autenticación fue exitosa
+        console.log(response.json().then(data => cookies.set('idDeUsuario', data.userID, { path: '/' }) ));
         console.log('Inicio de sesión exitoso');
+        console.log(cookies.get('idDeUsuario'));
         setError(''); // Restablecer el estado de error
         // Puedes redirigir al usuario a otra página o realizar otras acciones necesarias
       }

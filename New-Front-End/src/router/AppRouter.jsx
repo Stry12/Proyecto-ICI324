@@ -16,7 +16,7 @@ export const AppRouter = () => {
   return (
     <Routes>
         <Route path="/Home" element={ <Inicio></Inicio> } />
-        <Route path="/Inicio" element={ <Registrarse></Registrarse> } />
+        <Route path="/Inicio" element={ <Logearse></Logearse> } />
         <Route path="/Libros" element={ <Libros></Libros> } />
         <Route path="/Libros/informacion" element={ <InformacionLibros></InformacionLibros> } />
         <Route path="/Libros/agregar" element={ <AgregarLibro></AgregarLibro> } />
