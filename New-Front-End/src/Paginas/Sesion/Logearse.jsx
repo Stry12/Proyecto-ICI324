@@ -1,12 +1,13 @@
 // Importa useState para manejar el estado del mensaje de error
 import React, { useState } from 'react';
 import { Button, Container, Paper, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     NombreDeUsuario: '',
     password: '',
@@ -20,40 +21,46 @@ function LoginForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    try {
-      const response = await fetch('http://localhost:4000/user/getuser', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          NombreDeUsuario: formData.NombreDeUsuario,
-          password: formData.password,
-        }),
+  
+    fetch('http://localhost:4000/user/getuser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        NombreDeUsuario: formData.NombreDeUsuario,
+        password: formData.password,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then((data) => {
+            throw new Error(data.error || 'Error de inicio de sesión');
+          });
+        }
       })
-
-
-      if (response.ok) {
+      .then((data) => {
         // La autenticación fue exitosa
-        console.log(response.json().then(data => cookies.set('idDeUsuario', data.userID, { path: '/' }) ));
         console.log('Inicio de sesión exitoso');
-        console.log(cookies.get('idDeUsuario'));
+        console.log('Usuario ID:', data.userID);
+  
+        // Guardar la cookie
+        cookies.set('idDeUsuario', data.userID, { path: '/' });
+  
         setError(''); // Restablecer el estado de error
+        window.location.href = '/Home';
         // Puedes redirigir al usuario a otra página o realizar otras acciones necesarias
-      }
-       else {
-        // La autenticación falló, manejar el mensaje de error
-        const data = await response.json();
-        setError(data.error || 'Error de inicio de sesión');
-      }
-    } catch (error) {
-      console.error('Error al enviar la solicitud:', error.message);
-      setError('Error de red');
-    }
+      })
+      .catch((error) => {
+        console.error('Error al enviar la solicitud:', error.message);
+        setError('Error de red');
+      });
   };
+  
 
   console.log(formData);
 

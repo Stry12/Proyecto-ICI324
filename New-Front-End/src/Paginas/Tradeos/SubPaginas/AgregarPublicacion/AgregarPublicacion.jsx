@@ -131,7 +131,6 @@ const AgregarPublicacion = () => {
     setIsbn('');
     setCondition('');
     setImages('');
-
     navigate('/Tradeos');
   };
 
