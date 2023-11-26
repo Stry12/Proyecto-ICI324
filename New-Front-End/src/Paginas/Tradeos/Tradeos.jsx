@@ -10,7 +10,6 @@ const Tradeos = () => {
 
   return (
     <>
-      <NavBar />
       <Link to="/Tradeos/agregar" style={{ textDecoration: 'none' }}>
         <Button variant="contained" color="primary" style={{ margin: '10px' }}>
           Agregar

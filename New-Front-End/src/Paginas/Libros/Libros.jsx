@@ -7,6 +7,8 @@ import '../../App.css'
 const apiUrl = 'http://localhost:4000';
 
 const Libros = () => {
+
+  
   const [data, setData] = useState([]);
   const cardMediaStyle = {
     height: 320,
@@ -14,7 +16,7 @@ const Libros = () => {
   };
 
   useEffect(() => {
-    fetch(`${apiUrl}/libros/getlibros`)
+    fetch(`${apiUrl}/libros/get/sql`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error en la solicitud');
@@ -25,9 +27,10 @@ const Libros = () => {
       .catch((error) => console.error('Error al obtener datos de la API:', error));
   }, []);
 
+  console.log(data);
+
   return (
     <>
-      <NavBar />
       <Link to="/Libros/agregar" style={{ textDecoration: 'none' }}>
         <Button variant="contained" color="primary" style={{ margin: '10px' }}>
           Agregar
