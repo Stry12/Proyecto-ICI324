@@ -48,7 +48,7 @@ const Libros = () => {
               margin: '20px auto', // Alinea horizontalmente con margen igual
             }}>
               <CardActionArea>
-                <Link to={`/Libros/informacion`}>
+                <Link to={`/Libros/informacion/${libro.isbn}`}>
                   <div className="cardMediaContainer">
                     <CardMedia
                       sx={cardMediaStyle}

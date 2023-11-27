@@ -1,11 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import NavBar from '../../../../Componentes/Navbar';
 import { Button, TextField, Typography, Container, Paper, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import '../../../../App.css'
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const apiUrl = 'http://localhost:4000';
+const cookies = new Cookies();
 
 const AgregarLibro = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      // Verificar si 'idDeUsuario' no está presente en las cookies
+      if (cookies.get('idDeUsuario') == null) {
+        // Redirigir a la página '/Inicio'
+        navigate('/Inicio');
+      }
+    }, []);
+
     const [bookInfo, setBookInfo] = useState({
         isbn: '',
         title: '',
@@ -27,6 +40,8 @@ const AgregarLibro = () => {
     
       const handleSubmit = (event) => {
         event.preventDefault();
+
+
     
         if (!bookInfo.isbn || !bookInfo.title || !bookInfo.author || !bookInfo.synopsis || !bookInfo.coverImage || !bookInfo.category) {
           alert("Por favor, completa todos los campos");

@@ -4,7 +4,7 @@ import NavBar from '../../Componentes/Navbar';
 import AddIcon from '@mui/icons-material/Add';
 import {Card, CardContent, Typography } from '@mui/material';
 import PostList from './PostList'; // Suponiendo que el archivo se encuentra en el mismo directorio
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 const apiUrl = 'http://localhost:4000';
@@ -14,7 +14,16 @@ const ProfilePage = () => {
   
   const [userPosts, setuserPosts] = useState([]);
   const userId = cookies.get('idDeUsuario');  // Ajusta esto con el ID del usuario que deseas recuperar
+  const navigate = useNavigate();
 
+
+  useEffect(() => {
+    // Verificar si 'idDeUsuario' no está presente en las cookies
+    if (cookies.get('idDeUsuario') == null) {
+      // Redirigir a la página '/Inicio'
+      navigate('/Inicio');
+    }
+  }, []);
 
   useEffect(() => {
     const fetchPublicaciones = async () => {
