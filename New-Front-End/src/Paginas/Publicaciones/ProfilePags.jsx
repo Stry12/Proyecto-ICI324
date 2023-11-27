@@ -1,24 +1,43 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 import NavBar from '../../Componentes/Navbar';
 import AddIcon from '@mui/icons-material/Add';
 import {Card, CardContent, Typography } from '@mui/material';
 import PostList from './PostList'; // Suponiendo que el archivo se encuentra en el mismo directorio
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const apiUrl = 'http://localhost:4000';
+const cookies = new Cookies();
 
 const ProfilePage = () => {
-  // Suponiendo que tienes un arreglo de publicaciones
-  const userPosts = [
-    { id: 1, title: 'Publicación 1', content: 'Contenido de la publicación 1', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    // ... más publicaciones
-  ];
+  
+  const [userPosts, setuserPosts] = useState([]);
+  const userId = cookies.get('idDeUsuario');  // Ajusta esto con el ID del usuario que deseas recuperar
 
-  return (
+
+  useEffect(() => {
+    const fetchPublicaciones = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/publicaciones/get/${userId}`);
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+          setuserPosts(data);
+        } else {
+          console.log('No se encontraron publicaciones para el usuario con ID:', userId);
+        }
+      } catch (error) {
+        console.error('Error al obtener las publicaciones:', error);
+      }
+    };
+
+    fetchPublicaciones();
+  }, [userId]);  // Este efecto se ejecutará cada vez que cambie el userId
+
+  console.log(userPosts);
+
+    return (
     <div>
         <Card>
             <Link to="/Tradeos/agregar" style={{ textDecoration: 'none' }}>

@@ -5,6 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import { Card, CardContent, Typography, Grid } from '@mui/material';
 import AlertDialogSlide from '../../Componentes/AlertDialogSlide';
 
+const apiUrl = 'http://localhost:4000/imagenes/publicaciones';
+
 const PostList = ({ posts }) => {
   return (
         <Grid container spacing={2}>
@@ -13,7 +15,7 @@ const PostList = ({ posts }) => {
               <Card sx={{ maxWidth: 345 }} key={posts.id}>
                 <CardMedia
                   sx={{ height: 140 }}
-                  image = {posts.image}
+                  image={`${apiUrl}/${posts.images[0]}`}
                   title = {posts.title}
                 />
                 <CardContent>
@@ -21,7 +23,7 @@ const PostList = ({ posts }) => {
                     {posts.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {posts.content}
+                    {posts.condition}
                   </Typography>
                 </CardContent>
                 <CardActions>

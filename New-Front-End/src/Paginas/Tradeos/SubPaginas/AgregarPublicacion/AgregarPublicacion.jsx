@@ -61,16 +61,16 @@ const AgregarPublicacion = () => {
   useEffect(() => {
     const fetchBooks = async () => {
     try {
-        const response = await fetch(`${apiUrl}/libros/librosisbnauthor`);
+        const response = await fetch(`${apiUrl}/libros/get/librosisbnauthor`);
         const data = await response.json();
-  
-        if (data && data.libros) {
-          const formattedBooks = data.libros.map((libro) => ({
-            title: libro.Titulo,
-            isbn: libro.ISBN,
-            autor: libro.Autor
+        if (data && data.libro) {
+          const formattedBooks = data.libro.map((libro) => ({
+            id: libro._id,
+            title: libro.title,
+            isbn: libro.isbn,
+            autor: libro.author
           }));
-  
+          
           setBooks(formattedBooks);
   
           // Imprimir en la consola
@@ -84,6 +84,8 @@ const AgregarPublicacion = () => {
     };
     fetchBooks();
   }, []);
+  
+  console.log(top100Films)
 
   const options = top100Films.map((option) => {
     const firstLetter = option.title[0].toUpperCase();
@@ -120,6 +122,7 @@ const AgregarPublicacion = () => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('isbn', isbn);
+    console.log(isbn)
     formData.append('condition', condition);
     formData.append('id_usuario', cookies.get('idDeUsuario'));
     images.forEach((image) => {
@@ -149,6 +152,11 @@ const AgregarPublicacion = () => {
     setImages('');
     navigate('/Tradeos');
   };
+
+  const handleOptionChangeISBN = (event, value) => {
+    setIsbn(value ? value.isbn : ''); // Si value existe, establece su isbn; de lo contrario, establece una cadena vacía
+  };
+
 
   return (
     <>
@@ -192,7 +200,7 @@ const AgregarPublicacion = () => {
             {/* Columna derecha para campos de texto */}
             <Grid item xs={12} sm={6}>
               <TextField
-                label="Título del Libro"
+                label="Titulo de la publicacion"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
@@ -200,14 +208,25 @@ const AgregarPublicacion = () => {
                 sx = {{ mb: 2}}
               />
 
-              <TextField
-                label="ISBN"
-                value={isbn}
-                onChange={(e) => setIsbn(e.target.value)}
-                required
+              <Autocomplete
                 fullWidth
-                sx = {{ mb: 2}}
+                id="grouped-demo"
+                options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+                groupBy={(option) => option.firstLetter}
+                getOptionLabel={(option) => option.isbn || "Default Label"}
+                value={top100Films.find(option => option.isbn === isbn) || null}
+                onChange={handleOptionChangeISBN}
+                sx={{ mb: 2 }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="ISBN"
+                  />
+                )}
               />
+
+
+
               <FormControl fullWidth
               sx={{mb: 2}}>
                 <InputLabel disableAnimation={false} >Estado del Libro</InputLabel>
