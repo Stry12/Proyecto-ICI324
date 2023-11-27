@@ -21,6 +21,10 @@ export default function AlertDialogSlide({idObj}) {
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCloseSI = () => {
 
     fetch(`http://localhost:4000/publicaciones/delete/${idObj}`, {
       method: 'DELETE',
@@ -57,7 +61,7 @@ export default function AlertDialogSlide({idObj}) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>
-          <Button onClick={handleClose}>Si</Button>
+          <Button onClick={handleCloseSI}>Si</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
