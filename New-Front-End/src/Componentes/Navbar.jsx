@@ -12,22 +12,31 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
 const pages = ['Inicio', 'Libros', 'Tradeos','Mis Publicaciones'];
 const rutas = ['/Home', '/Libros', '/Tradeos','/publicaciones']
-const settings = ['Profile', 'Logout'];
 
 function NavBar() {
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
+  const logout = () => {
+    console.log("logout")
+    cookies.remove('idDeUsuario', {path: '/'});
+    window.location.href='./Inicio';
+    navigate('/Inicio');
+  };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -191,11 +200,12 @@ function NavBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" onClick={logout}>Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           
