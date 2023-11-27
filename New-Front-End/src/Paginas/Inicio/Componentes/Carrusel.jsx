@@ -14,7 +14,7 @@ export default function Carrusel() {
     const [data, setData] = useState([]);
   
     useEffect(() => {
-      fetch(`${apiUrl}/libros/get/sql`)
+      fetch(`${apiUrl}/libros/get/nosql`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Error en la solicitud');
@@ -66,7 +66,7 @@ export default function Carrusel() {
                             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Card sx={cardMediaStyle}>
                                     <CardActionArea>
-                                        <CardMedia sx={cardimg} component={'img'} image={`${apiUrl}/imagenes/portadas/${libro.nombre_imagen}`} />
+                                        <CardMedia sx={cardimg} component={'img'} image={`${apiUrl}/imagenes/portadas/${libro.coverImage}`} />
                                     </CardActionArea>
                                 </Card>
                             </Box>

@@ -26,7 +26,7 @@ const AgregarPublicacion = () => {
   const [title, setTitle] = useState('');
   const [isbn, setIsbn] = useState('');
   const [condition, setCondition] = useState('');
-  const [images, setImages] = useState();
+  const [images, setImages] = useState([]);
 
   // Buscador
   const [buscados, setBuscados] = useState(new Map());
@@ -99,7 +99,7 @@ const AgregarPublicacion = () => {
 
   const handleImageUpload = (event) => {
     const selectedImages = event.target.files;
-    setImages(selectedImages);
+    setImages([...selectedImages]);
   };
 
   const handleConditionChange = (event) => {
@@ -121,9 +121,12 @@ const AgregarPublicacion = () => {
     formData.append('title', title);
     formData.append('isbn', isbn);
     formData.append('condition', condition);
-    for (let i = 0; i < images.length; i++) {
-      formData.append('images', images[i]);
-    }
+    formData.append('id_usuario', cookies.get('idDeUsuario'));
+    images.forEach((image) => {
+      formData.append(`images`, image);
+    });
+
+    
 
     fetch(`${apiUrl}/publicaciones/subir`, {
       method: 'POST',
@@ -132,6 +135,13 @@ const AgregarPublicacion = () => {
       .then((res) => res.text())
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+
+    console.log(formData.get('title'));
+    console.log(formData.get('isbn'));
+    console.log(formData.get('condition'));
+    console.log(formData.get('id_usuario'));
+    // Accede a cada imagen y muestra información en la consola
+
     
     setTitle('');
     setIsbn('');
@@ -168,11 +178,12 @@ const AgregarPublicacion = () => {
                   {Array.from(images).map((image, index) => (
                       <Grid item key={index} xs={12} sm={10} md={8} lg={6} xl={3}>
                         <img
+                          style={{ width: '200px', height: '300px' }}
                           className='container-imagen-publi-img'
                           key={index}
                           src={URL.createObjectURL(image)}
                         />
-                      </Grid>
+                    </Grid>
                   ))}
                 </Grid>
               )}

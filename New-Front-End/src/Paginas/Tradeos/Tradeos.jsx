@@ -1,10 +1,7 @@
 import React from 'react';
-import NavBar from '../../Componentes/Navbar';
 import '../../App.css'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
-
-const apiUrl = 'http://localhost:4000';
 
 const Tradeos = () => {
 

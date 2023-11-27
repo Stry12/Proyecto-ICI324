@@ -16,7 +16,7 @@ const Libros = () => {
   };
 
   useEffect(() => {
-    fetch(`${apiUrl}/libros/get/sql`)
+    fetch(`${apiUrl}/libros/get/nosql`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Error en la solicitud');
@@ -53,7 +53,7 @@ const Libros = () => {
                     <CardMedia
                       sx={cardMediaStyle}
                       className="cardMediaImage"
-                      image={`${apiUrl}/imagenes/portadas/${libro.nombre_imagen}`}
+                      image={`${apiUrl}/imagenes/portadas/${libro.coverImage}`}
                     />
                     <div className="cardMediaOverlay"></div>
                   </div>

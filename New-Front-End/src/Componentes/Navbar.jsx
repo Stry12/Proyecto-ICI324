@@ -201,7 +201,9 @@ function NavBar() {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to={"/perfil"} style={{ textDecoration: 'none' }}>
                   <Typography textAlign="center">Profile</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center" onClick={logout}>Logout</Typography>

@@ -4,6 +4,7 @@ import NavBar from '../../Componentes/Navbar';
 import AddIcon from '@mui/icons-material/Add';
 import {Card, CardContent, Typography } from '@mui/material';
 import PostList from './PostList'; // Suponiendo que el archivo se encuentra en el mismo directorio
+import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
   // Suponiendo que tienes un arreglo de publicaciones
@@ -20,11 +21,13 @@ const ProfilePage = () => {
   return (
     <div>
         <Card>
-            <CardContent>    
-                <Button variant="contained" startIcon={<AddIcon/>}>
-                    Crear Publicación
-                </Button>
-            </CardContent> 
+            <Link to="/Tradeos/agregar" style={{ textDecoration: 'none' }}>
+              <CardContent>    
+                  <Button variant="contained" startIcon={<AddIcon/>}>
+                      Crear Publicación
+                  </Button>
+              </CardContent> 
+            </Link>
         </Card>
             
         <Card>

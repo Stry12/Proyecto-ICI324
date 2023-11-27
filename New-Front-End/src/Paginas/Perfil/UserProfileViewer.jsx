@@ -33,6 +33,13 @@ const UserProfileViewer = () => {
     return <p>Cargando datos...</p>;
   }
 
+  const logout = () => {
+    console.log("logout")
+    cookies.remove('idDeUsuario', {path: '/'});
+    window.location.href='./Inicio';
+    navigate('/Inicio');
+  };
+
   return (
     <>
       <Card>
@@ -71,7 +78,7 @@ const UserProfileViewer = () => {
               Editar Perfil
             </Button>
             <CambiarContraseña />
-            <Button variant="outlined" startIcon={<LogoutIcon />}>
+            <Button variant="outlined" onClick={logout} startIcon={<LogoutIcon />}>
               Cerrar Sesión
             </Button>
             <EliminarCuenta />
