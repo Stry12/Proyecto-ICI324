@@ -9,12 +9,12 @@ import { Link } from 'react-router-dom';
 const ProfilePage = () => {
   // Suponiendo que tienes un arreglo de publicaciones
   const userPosts = [
-    { id: 1, title: 'Publicación 1', content: 'Contenido de la publicación 1', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
-    { id: 2, title: 'Publicación 2', content: 'Contenido de la publicación 2', image: "", },
+    { id: 1, title: 'Publicación 1', image: "", },
+    { id: 2, title: 'Publicación 2', image: "", },
+    { id: 3, title: 'Publicación 2', image: "", },
+    { id: 4, title: 'Publicación 2', image: "", },
+    { id: 5, title: 'Publicación 2', image: "", },
+    { id: 6, title: 'Publicación 2', image: "", },
     // ... más publicaciones
   ];
 
