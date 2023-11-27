@@ -8,6 +8,7 @@ import AlertDialogSlide from '../../Componentes/AlertDialogSlide';
 const apiUrl = 'http://localhost:4000/imagenes/publicaciones';
 
 const PostList = ({ posts }) => {
+  
   return (
         <Grid container spacing={2}>
           {posts.map((posts,index) => (
@@ -28,7 +29,7 @@ const PostList = ({ posts }) => {
                 </CardContent>
                 <CardActions>
                   <Button size="small">Editar</Button>
-                  <AlertDialogSlide/>
+                  <AlertDialogSlide idObj={posts._id} />
                 </CardActions>
               </Card>
             </Grid>

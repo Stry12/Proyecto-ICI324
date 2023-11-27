@@ -11,16 +11,30 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+export default function AlertDialogSlide({idObj}) {
   const [open, setOpen] = React.useState(false);
+
+  console.log(idObj)
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+
+    fetch(`http://localhost:4000/publicaciones/delete/${idObj}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        console.log('Publicación eliminada');
+        window.location.reload();
+      })
+      .catch((error) => console.error('Error:', error));
+
     setOpen(false);
-    
   };
 
   return (
