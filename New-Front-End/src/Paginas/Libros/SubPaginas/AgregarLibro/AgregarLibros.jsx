@@ -32,6 +32,8 @@ const AgregarLibro = () => {
           alert("Por favor, completa todos los campos");
           return;
         }
+
+        console.log(bookInfo);
     
         const formData = new FormData();
         formData.append('isbn', bookInfo.isbn);
@@ -41,7 +43,7 @@ const AgregarLibro = () => {
         formData.append('category', bookInfo.category);
         formData.append('coverImage', bookInfo.coverImage);
     
-        fetch('http://localhost:4000/libros/subir', {
+        fetch('http://localhost:4000/libros/create/nosql', {
           method: 'POST',
           body: formData,
         })
