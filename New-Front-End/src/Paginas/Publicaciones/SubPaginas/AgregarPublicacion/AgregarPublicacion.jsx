@@ -13,7 +13,6 @@ import {
   Autocomplete
 } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import NavBar from '../../../../Componentes/Navbar.jsx';
 import '../../../../App.css';
 import Cookies from 'universal-cookie';
 
@@ -153,7 +152,7 @@ const AgregarPublicacion = () => {
     setIsbn('');
     setCondition('');
     setImages('');
-    navigate('/Tradeos');
+    navigate('/publicaciones');
   };
 
   const handleOptionChangeISBN = (event, value) => {

@@ -49,7 +49,7 @@ const ProfilePage = () => {
     return (
     <div>
         <Card>
-            <Link to="/Tradeos/agregar" style={{ textDecoration: 'none' }}>
+            <Link to="/publicaciones/agregar" style={{ textDecoration: 'none' }}>
               <CardContent>    
                   <Button variant="contained" startIcon={<AddIcon/>}>
                       Crear Publicación

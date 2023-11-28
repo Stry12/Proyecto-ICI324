@@ -74,6 +74,7 @@ const AgregarLibro = () => {
           coverImage: null,
           category: '', // Restablecemos la categoría
         });
+        navigate('/Libros');
       };
     
 
